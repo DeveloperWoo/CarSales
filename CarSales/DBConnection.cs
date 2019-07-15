@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
 namespace CarSales
-{
+{ 
     public enum Authentication
     {
         Success,
@@ -24,10 +25,10 @@ namespace CarSales
         {
             try
             {
-                connetionString = "Data Source=LAPTOP-DG03G47M\\SQLEXPRESS;" +
-                                  "Initial Catalog = CarSalesDB; " +
-                                  "Integrated Security = SSPI; " +
-                                  "Persist Security Info = false";
+                /* HJ's DB connection */
+                connetionString = "Data Source=LAPTOP-DG03G47M\\SQLEXPRESS;Initial Catalog = CarSalesDB;Integrated Security = SSPI;Persist Security Info = false";
+                /* MJ's DB connection */
+                //connetionString = "Data Source=MJ_DB_server;Initial Catalog = CarSalesDB;Integrated Security = SSPI;Persist Security Info = false";
                 conn = new SqlConnection(connetionString);
                 Console.WriteLine("CarSalesDB Connected!");
             }
@@ -39,100 +40,169 @@ namespace CarSales
 
         public Authentication ConfirmExistingCustomer(string userName, string pw)
         {
-            conn.Open();
-            Authentication auth;
-
+            Authentication auth = Authentication.NoSuchCustomer;
             string sql = "SELECT Password FROM Customers WHERE CustName=@userName;";
-            using (command = new SqlCommand(sql, conn))
+
+            try
             {
-                command.Parameters.AddWithValue("@userName", userName);
-                using (SqlDataReader reader = command.ExecuteReader())
+                conn.Open();
+                using (command = new SqlCommand(sql, conn))
                 {
-                    if (reader.HasRows)
+                    command.Parameters.AddWithValue("@userName", userName);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        reader.Read();
-                        if (pw.Equals(reader.GetString(0)))
-                            auth = Authentication.Success;
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            if (pw.Equals(reader.GetString(0)))
+                                auth = Authentication.Success;
+                            else
+                                auth = Authentication.WrongPassword;
+                        }
                         else
-                            auth = Authentication.WrongPassword;
+                            auth = Authentication.NoSuchCustomer;
                     }
-                    else
-                        auth = Authentication.NoSuchCustomer;
                 }
             }
-
-            conn.Close();
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in SQL: " + e.Message);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
             return auth;
         }
 
         public Customer GetUserByUsername(string userName)
         {
-            Customer customer;
-            conn.Open();
             string sql = "SELECT * FROM Customers WHERE CustName=@userName;";
-            using (command = new SqlCommand(sql, conn))
+            Customer customer = null;
+
+            try
             {
-                command.Parameters.AddWithValue("@userName", userName);
-                using (SqlDataReader reader = command.ExecuteReader())
+                conn.Open();
+
+                using (command = new SqlCommand(sql, conn))
                 {
-                    reader.Read();
-                    customer = new Customer()
+                    command.Parameters.AddWithValue("@userName", userName);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        /*
-                        CustName = reader.GetString(0),
-                        Address = reader.GetString(1),
-                        PostalCode = reader.GetString(2),
-                        PhoneNumber = reader.GetString(3),
-                        Email = reader.GetString(4),
-                        Password = reader.GetString(5)
-                        */
-                        
-                        CustName = reader["CustName"].ToString(),
-                        Address = reader["Address"].ToString(),
-                        PostalCode = reader["PostalCode"].ToString(),
-                        PhoneNumber = reader["PhoneNumber"].ToString(),
-                        Email = reader["Email"].ToString(),
-                        Password = reader["Password"].ToString()
-                        
-                    };
+                        reader.Read();
+                        customer = new Customer()
+                        {
+                            /*
+                            CustName = reader.GetString(0),
+                            Address = reader.GetString(1),
+                            PostalCode = reader.GetString(2),
+                            PhoneNumber = reader.GetString(3),
+                            Email = reader.GetString(4),
+                            Password = reader.GetString(5)
+                            */
+
+                            CustName = reader["CustName"].ToString(),
+                            Address = reader["Address"].ToString(),
+                            PostalCode = reader["PostalCode"].ToString(),
+                            PhoneNumber = reader["PhoneNumber"].ToString(),
+                            Email = reader["Email"].ToString(),
+                            Password = reader["Password"].ToString()
+
+                        };
+                    }
                 }
             }
-
-            conn.Close();
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in SQL: " + e.Message);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
             return customer;
         }
 
         public bool InsertOrder(Order order)
         {
-            conn.Open();
-
             string sql = "INSERT INTO Orders VALUES (@CustName, @Brand, @Model, @Year, @Colour, @Price);";
-            using (command = new SqlCommand(sql, conn))
-            {
-                command.Parameters.AddWithValue("@CustName", order.CustName);
-                command.Parameters.AddWithValue("@Brand", order.Brand);
-                command.Parameters.AddWithValue("@Model", order.Model);
-                command.Parameters.AddWithValue("@Year", order.Year);
-                command.Parameters.AddWithValue("@Colour", order.Colour);
-                command.Parameters.AddWithValue("@Price", order.Price);
-                int record = command.ExecuteNonQuery();
 
-                Console.WriteLine(record + " order added");
+            try
+            {
+                conn.Open();
+
+                using (command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("@CustName", order.CustName);
+                    command.Parameters.AddWithValue("@Brand", order.Brand);
+                    command.Parameters.AddWithValue("@Model", order.Model);
+                    command.Parameters.AddWithValue("@Year", order.Year);
+                    command.Parameters.AddWithValue("@Colour", order.Colour);
+                    command.Parameters.AddWithValue("@Price", order.Price);
+                    int record = command.ExecuteNonQuery();
+
+                    Console.WriteLine(record + " order added");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in SQL: " + e.Message);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
             }
 
-            conn.Close();
             return true;
         }
 
         public List<Order> GetOrderList()
         {
-            conn.Open();
-
-            List<Order> orderList = new List<Order>();
-
             string sql = "SELECT * FROM Orders;";
+            List<Order> orderList = null;
 
-            conn.Close();
+            try
+            {
+                orderList = new List<Order>();
+
+                conn.Open();
+                command = new SqlCommand(sql, conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Order order = new Order();
+                    order.OrderID = Int32.Parse(reader["OrderID"].ToString());
+                    order.CustName = reader["CustName"].ToString();
+                    order.Brand = reader["Brand"].ToString();
+                    order.Model = reader["Model"].ToString();
+                    order.Year = reader["Year"].ToString();
+                    order.Colour = reader["Colour"].ToString();
+                    order.Price = Double.Parse(reader["Price"].ToString());
+
+                    orderList.Add(order);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in SQL: " + e.Message);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
             return orderList;
         }
     }
