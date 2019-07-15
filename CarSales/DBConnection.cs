@@ -165,9 +165,9 @@ namespace CarSales
             return true;
         }
 
-        public List<Order> GetOrderList()
+        public List<Order> GetMyOrderList(string userName)
         {
-            string sql = "SELECT * FROM Orders;";
+            string sql = "SELECT * FROM Orders WHERE CustName=@userName;";
             List<Order> orderList = null;
 
             try
@@ -176,6 +176,7 @@ namespace CarSales
 
                 conn.Open();
                 command = new SqlCommand(sql, conn);
+                command.Parameters.AddWithValue("@userName", userName);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())

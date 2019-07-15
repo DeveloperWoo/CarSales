@@ -15,6 +15,7 @@
         .jumbotron {
             background-color: darkcyan;
             color: white;
+            margin: 0px;
         }
 
         .footer {
@@ -29,30 +30,45 @@
 
         #grid-container {
             display: grid;
-            grid-template-columns: 50% 50%;
-            padding: 10px;
+            grid-template-areas: "myProfile orderForm"
+                                 "orderList orderList";
         }
         #gridItem1 {
-            padding: 20px;
+            grid-area: myProfile;
         }
         #gridItem2 {
-            margin: auto;
+            grid-area: orderForm;
+            padding: 10px;
+            margin: 10px;
             background-color: aliceblue;
-            padding: 20px;
+        }
+        #gridItem3 {
+            grid-area: orderList;
+        }
+        .auto-style1 {
+            width: 221px;
+        }
+        .auto-style2 {
+            width: 82px;
+        }
+        .auto-style3 {
+            width: 163px;
         }
     </style>
 </head>
 <body>
 <form id="form1" runat="server">
 <div class="jumbotron">
-    <h1>Sheridan Auto Trader</h1>      
+    <h1>Sheridan Auto Trader</h1>
+    <h2>
+        Welcome <asp:Label ID="welcomeUserName" runat="server"></asp:Label>!
+    </h2>
 </div>
 <div class="col-sm-2"></div>
 <div class="col-sm-8" id="grid-container">
+
     <div id="gridItem1">
-        <h2>
-            Welcome <asp:Label ID="welcomeUserName" runat="server"></asp:Label>
-        </h2>
+        <h2>My Profile</h2>
         <table class="table table-bordered">
             <tr>
                 <th class="auto-style1">Name</th>
@@ -169,10 +185,11 @@
         </table>
     </div>
     <div id="gridItem3">
-        <table>
+        <h2>My Order List</h2>
+        <table class="table table-striped">
             <tr>
-                <th>Order ID</th>
-                <th>Customer Name</th>
+                <th class="auto-style2">Order ID</th>
+                <th class="auto-style3">Customer Name</th>
                 <th>Brand</th>
                 <th>Model</th>
                 <th>Year</th>

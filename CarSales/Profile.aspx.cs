@@ -21,7 +21,7 @@ namespace CarSales
             if (!IsPostBack)
             {
                 //Display Order history
-                RepeaterOrders.DataSource = dbConn.GetOrderList();
+                RepeaterOrders.DataSource = dbConn.GetMyOrderList(userName);
                 RepeaterOrders.DataBind();
             }
         }
