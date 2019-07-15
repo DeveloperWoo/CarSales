@@ -1,11 +1,11 @@
 /****** Object:  Database [CarSalesDB]    Script Date: 2019-07-14 11:53:00 AM ******/
 
---CREATE DATABASE CarSalesDB
+CREATE DATABASE CarSalesDB
 
 USE CarSalesDB;
 
-DROP TABLE IF EXISTS dbo.Customers;
 DROP TABLE IF EXISTS dbo.Orders;
+DROP TABLE IF EXISTS dbo.Customers;
 
 CREATE TABLE [dbo].[Customers](
 	[CustName] [nvarchar](100) NOT NULL PRIMARY KEY,
@@ -25,17 +25,17 @@ CREATE TABLE [dbo].[Orders](
 	[Price] [float] NULL);
 
 
-INSERT INTO Customers
+INSERT INTO Customers(CustName, Address, PostalCode, PhoneNumber, Email, Password)
 VALUES 
-('Hyunju','1235 Marlborough Court, Oakville', 'L6H 0W8', '(437)988-7778', 'woohyu@sheridancollege.ca','1234');
-
-INSERT INTO Customers
-VALUES 
-('woo','1410 Trafalgar Road, Oakville', 'L6H 0W8', '(111)222-3333', 'woo@sheridancollege.ca','1234');
+('HJ','2440 Winston Park Dr, Oakville', 'L6H 7V2', '(437)988-7778', 'woohyu@sheridancollege.ca','1234'),
+('MJ','8200 Dixie Rd, Brampton', 'L6T 4B8', '(647)222-2644', 'parkminj@sheridancollege.ca','1234')
+;
 
 INSERT INTO Orders(CustName, Brand,Model,Year,Colour,Price)
 VALUES
-('Hyunju', 'Ferrari', '488 Spider', '2019', 'Red', 334409);
+('HJ', 'Ferrari', '488 Spider', '2019', 'Red', 334409),
+('MJ', 'Porsche', 'Macan', '2019', 'Blue', 400000)
+;
 
 SELECT * FROM Customers;
 SELECT * FROM Orders;
