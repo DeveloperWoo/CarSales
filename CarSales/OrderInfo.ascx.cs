@@ -27,7 +27,7 @@ namespace CarSales
                 valModel.Text = Model;
                 valYear.Text = Year;
                 valColour.Text = Colour;
-                valPrice.Text = "$" + Price.ToString("0.00");
+                valPrice.Text = "$" + Price.ToString("0,000.00");
             }
         }
     }

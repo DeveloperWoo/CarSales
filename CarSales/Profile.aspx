@@ -207,7 +207,7 @@
 <div class="col-sm-2"></div>
 
 <div class="footer">
-    <p>Woo, Hyun-Juun-Ju</p>
+    <p>Sheridan Car Sales &copy; Copyright 2019. Developed by Hyun-Ju Woo & Minjung Park</p>
 </div>
 </form>
 </body>

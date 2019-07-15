@@ -47,8 +47,8 @@ namespace CarSales
                         txtModel.Text = "";
                         txtColour.Text = "";
                         txtPrice.Text = "";
-                        lblMessage.Text = "Order has been placed.";
-                        //Response.Redirect(Request.RawUrl); //refresh the current page
+                        //lblMessage.Text = "Order has been placed.";
+                        Response.Redirect(Request.RawUrl); //refresh the current page
                     }
                 }
                 catch (Exception)
