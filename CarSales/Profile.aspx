@@ -16,6 +16,7 @@
             background-color: darkcyan;
             color: white;
             margin: 0px;
+            padding-bottom: 5px;
         }
 
         .footer {
@@ -46,6 +47,7 @@
         }
         #gridItem3 {
             grid-area: orderList;
+            margin-bottom: 20px;
         }
         .auto-style1 {
             width: 221px;
@@ -56,19 +58,22 @@
         .auto-style3 {
             width: 163px;
         }
+        #welcomeMsg {
+            text-align: center;
+            color: darkslategray;
+        }
     </style>
 </head>
 <body>
 <form id="form1" runat="server">
 <div class="jumbotron">
     <h1>Sheridan Auto Trader</h1>
-    <h2>
+    <h3 id="welcomeMsg">
         Welcome <asp:Label ID="welcomeUserName" runat="server"></asp:Label>!
-    </h2>
+    </h3>
 </div>
 <div class="col-sm-2"></div>
 <div class="col-sm-8" id="grid-container">
-
     <div id="gridItem1">
         <h2>My Profile</h2>
         <table class="table table-bordered">
