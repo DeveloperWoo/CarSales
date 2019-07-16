@@ -22,8 +22,10 @@
             bottom: 0;
             width: 100%;
             background-color: darkslategray;
-            color: white;
+            color: gray;
+            font-style: Italic;
             text-align: center;
+            padding-top: 10px;
         }
     </style>
 </head>
