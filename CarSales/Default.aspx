@@ -45,7 +45,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="pwd">Password:</label>
             <div class="col-sm-10">          
-                <asp:TextBox ID="txtPassword" runat="server" class="form-control" placeholder="Enter password"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" class="form-control" placeholder="Enter password"  type="password"></asp:TextBox>
             </div>
         </div>
         <div class="form-group">        
