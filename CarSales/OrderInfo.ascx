@@ -1,4 +1,6 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="OrderInfo.ascx.cs" Inherits="CarSales.OrderInfo" %>
+﻿<!-- Author: Hyun Ju Woo () on July-15-2019 -->
+
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="OrderInfo.ascx.cs" Inherits="CarSales.OrderInfo" %>
 
 <tr>
     <td><asp:Label ID="valOrderID" runat="server"></asp:Label></td>

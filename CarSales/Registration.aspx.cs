@@ -13,7 +13,6 @@ namespace CarSales
       readonly DBConnection dbConn = new DBConnection();
       protected void Page_Load(object sender, EventArgs e)
       {
-         //txtcPhoneNumber.Attributes.Add("onblur", "SetTxtcPhoneNumber();");
       }
 
       protected void BtnRegister_Click(object sender, EventArgs e)

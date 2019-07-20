@@ -109,3 +109,4 @@ C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignmen
 C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\obj\Debug\CarSales.csproj.CopyComplete
 C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\obj\Debug\CarSales.dll
 C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\obj\Debug\CarSales.pdb
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\obj\Debug\CarSales.csprojAssemblyReference.cache

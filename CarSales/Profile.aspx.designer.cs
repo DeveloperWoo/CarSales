@@ -31,6 +31,15 @@ namespace CarSales {
         protected global::System.Web.UI.WebControls.Label welcomeUserName;
         
         /// <summary>
+        /// BtnLogOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnLogOut;
+        
+        /// <summary>
         /// valName control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,24 @@ namespace CarSales {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMessage;
+        
+        /// <summary>
+        /// BtnShowOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnShowOrders;
+        
+        /// <summary>
+        /// gridItem3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridItem3;
         
         /// <summary>
         /// RepeaterOrders control.
