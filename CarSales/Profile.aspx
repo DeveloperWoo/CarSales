@@ -2,6 +2,7 @@
 <!-- Author: Min Jung Park (991495289) on July-20-2019 -->
 
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="CarSales.Profile" %>
+
 <%@ Register TagPrefix="uc" TagName="OrderInfo" Src="OrderInfo.ascx" %>
 
 <!DOCTYPE html>
@@ -9,9 +10,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Login Page</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
@@ -96,6 +97,7 @@
         #BtnOrder {
             width: 200PX;
         }
+
         #BtnShowOrders {
             width: 100%;
         }
@@ -212,16 +214,18 @@
                                 <th></th>
                                 <td>
                                     <asp:Button ID="BtnOrder" Class="btn btn-info" runat="server" Text="ORDER" OnClick="BtnOrder_Click" ValidationGroup="OrderGroup" />
-                                    <td>
-                                        <asp:Label ID="lblMessage" runat="server"></asp:Label>
-                                    </td>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblMessage" runat="server"></asp:Label>
+                                </td>
+
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-around col-12">
-                <asp:Button ID="BtnShowOrders" Class="btn btn-info btn-block" runat="server" Text="VIEW ALL ORDER LIST" OnClick="BtnShowOrders_Click"  />
+                <asp:Button ID="BtnShowOrders" Class="btn btn-info btn-block" runat="server" Text="VIEW ALL ORDER LIST" OnClick="BtnShowOrders_Click" />
             </div>
             <div class="row" id="gridItem3" runat="server">
                 <h2>My Order List</h2>

@@ -35,6 +35,7 @@
             padding-bottom: 5px;
             padding-left: 20px;
         }
+
         .footer {
             position: fixed;
             left: 0;
@@ -46,20 +47,23 @@
             text-align: center;
             padding-top: 10px;
         }
+
         table {
             width: 100%;
         }
+
         td {
             padding: 2px;
         }
+
         #welcomeMsg {
             text-align: center;
             color: darkslategray;
         }
+
         #BtnRegister {
             width: 200px;
         }
-
     </style>
 </head>
 <body>
@@ -71,7 +75,7 @@
         <div class="container">
             <div class="row col-12">
                 <h2>New Registration</h2>
-                 
+
                 <table>
                     <tr>
                         <th>Customer Name:</th>
@@ -178,10 +182,10 @@
                     <tr>
                         <th></th>
                         <td>
-                            <asp:Button ID="BtnRegister" CssClass="btn btn-info" runat="server" Text="Register" OnClick="BtnRegister_Click" ValidationGroup="RegistraterGroup" />
-                            <td>
-                                <asp:Label ID="registerMsg" runat="server"></asp:Label>
-                            </td>
+                            <asp:Button ID="BtnRegister" CssClass="btn btn-info" runat="server" Text="Register" OnClick="BtnRegister_Click" ValidationGroup="RegistraterGroup" /></td>
+                        <td>
+                            <asp:Label ID="registerMsg" runat="server"></asp:Label>
+                        </td>
                     </tr>
                 </table>
             </div>
