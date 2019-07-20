@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+        <script>
+            function SetTxtcPhoneNumber() {
+                var phoneNum = document.getElementById("txtcPhoneNumber").value;
+                txtcPhoneNumber.value = "(" + phoneNum.substr(0, 3) + ") " + phoneNum.substr(3,3) + "-" + phoneNum.substr(6);
+          }
+</script>
+    
     <style>
         .jumbotron {
             background-color: darkcyan;
@@ -122,13 +130,15 @@
                     <tr>
                         <th>Phone Number:</th>
                         <td>
-                            <asp:TextBox ID="txtcPhoneNumber" runat="server" Width="200px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtcPhoneNumber" runat="server" Width="200px" 
+                                onblur="SetTxtcPhoneNumber()"
+                                ></asp:TextBox></td>
                         <td>
-                            <asp:RequiredFieldValidator ID="cPhoneNumber" runat="server"
-                                ErrorMessage="You must enter your phone number."
-                                ForeColor="Red"
+                            <asp:RegularExpressionValidator ID="cPhoneNumber" runat="server"
                                 ControlToValidate="txtcPhoneNumber"
-                                ValidationGroup="RegistraterGroup" />
+                                ErrorMessage="You must enter the number only."
+                                ForeColor="Red"                    
+                                ValidationExpression="^\d+?$" />
                         </td>
                     </tr>
                     <tr>

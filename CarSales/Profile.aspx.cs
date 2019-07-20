@@ -47,7 +47,6 @@ namespace CarSales
                         txtModel.Text = "";
                         txtColour.Text = "";
                         txtPrice.Text = "";
-                        //lblMessage.Text = "Order has been placed.";
                         Response.Redirect(Request.RawUrl); //refresh the current page
                     }
                 }
@@ -81,7 +80,6 @@ namespace CarSales
         {
             Customer customer = dbConn.GetUserByUsername(userName);
             valName.Text = customer.CustName;
-            //valName.Text = userName;
             valAddress.Text = customer.Address;
             valPostalCode.Text = customer.PostalCode;
             valPhoneNumber.Text = customer.PhoneNumber;

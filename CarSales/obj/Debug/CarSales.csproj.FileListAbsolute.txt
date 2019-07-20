@@ -105,7 +105,6 @@ C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignmen
 C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\obj\Debug\CarSales.csprojAssemblyReference.cache
 C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\obj\Debug\CarSales.csproj.CoreCompileInputs.cache
 C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\obj\Debug\CarSales.csproj.CopyComplete
 C:\Users\MJ\Documents\Visual Studio 2017\Projects\Sheridan Class\10-07_Assignment3_CarSales\CarSales\CarSales\obj\Debug\CarSales.dll
