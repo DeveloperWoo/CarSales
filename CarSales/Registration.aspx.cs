@@ -9,14 +9,34 @@ namespace CarSales
 {
     public partial class Registration : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+      readonly DBConnection dbConn = new DBConnection();
+      protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
       protected void BtnRegister_Click(object sender, EventArgs e)
       {
-         Response.Redirect("Default.aspx");
+         if (Page.IsValid)
+         {
+            try
+            {
+               Customer customer = new Customer();
+               customer.CustName = txtcName.Text;
+               customer.Address = txtcAddress.Text;
+               customer.PostalCode = txtcPostalCode.Text;
+               customer.PhoneNumber = txtcPhoneNumber.Text;
+               customer.Email = txtcEmail.Text;
+               customer.Password = txtcPassword.Text;
+               if (dbConn.InsertCustomer(customer))               
+                  Response.Redirect("Default.aspx");
+            }
+            catch (Exception)
+            {
+               throw;
+            }
+         }
+         
       }
    }
 }

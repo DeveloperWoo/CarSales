@@ -14,10 +14,13 @@ namespace CarSales
         public string Email { get; set; }
         public string Password { get; set; }
 
+      public Customer()
+      {
 
+      }
       public Customer(string custName, string address, string postalCode, string phoneNumber, string email, string password)
       {
-         custName = custName;
+         CustName = custName;
          Address = address;
          PostalCode = postalCode;
          PhoneNumber = phoneNumber;

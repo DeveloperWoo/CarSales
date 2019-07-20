@@ -128,8 +128,43 @@ namespace CarSales
             }
             return customer;
         }
+      public bool InsertCustomer(Customer customer)
+      {
+         string sql = "INSERT INTO Customers VALUES (@CustName, @Address, @PostalCode, @PhoneNumber, @Email, @Password);";
 
-        public bool InsertOrder(Order order)
+         try
+         {
+            conn.Open();
+
+            using (command = new SqlCommand(sql, conn))
+            {
+               command.Parameters.AddWithValue("@CustName", customer.CustName);
+               command.Parameters.AddWithValue("@Address", customer.Address);
+               command.Parameters.AddWithValue("@PostalCode", customer.PostalCode);
+               command.Parameters.AddWithValue("@PhoneNumber", customer.PhoneNumber);
+               command.Parameters.AddWithValue("@Email", customer.Email);
+               command.Parameters.AddWithValue("@Password", customer.Password);
+               int record = command.ExecuteNonQuery();
+
+               Console.WriteLine(record + " customer added");
+            }
+         }
+         catch (Exception e)
+         {
+            Console.WriteLine("Error in SQL: " + e.Message);
+         }
+         finally
+         {
+            if (conn.State == ConnectionState.Open)
+            {
+               conn.Close();
+            }
+         }
+
+         return true;
+      }
+
+      public bool InsertOrder(Order order)
         {
             string sql = "INSERT INTO Orders VALUES (@CustName, @Brand, @Model, @Year, @Colour, @Price);";
 
