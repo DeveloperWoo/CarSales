@@ -1,4 +1,4 @@
-﻿<!-- Author: Hyun Ju Woo () on July-20-2019 -->
+﻿<!-- Author: Hyun Ju Woo (991497524) on July-20-2019 -->
 <!-- Author: Min Jung Park (991495289) on July-20-2019 -->
 
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="CarSales.Profile" %>
