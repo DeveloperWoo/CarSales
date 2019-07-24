@@ -13,10 +13,6 @@ namespace CarSales
       readonly DBConnection dbConn = new DBConnection();
       protected void Page_Load(object sender, EventArgs e)
       {
-         cPostalCode.ValidationExpression = @"^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$";
-         /*
-          ValidationExpression=""
-          */
       }
 
       protected void BtnRegister_Click(object sender, EventArgs e)
@@ -25,25 +21,12 @@ namespace CarSales
          {
             try
             {
-               /*
-                 function SetTxtcPhoneNumber() {
-            var phoneNum = document.getElementById("txtcPhoneNumber").value;
-            if (phoneNum.length == 10)
-                txtcPhoneNumber.value = "(" + phoneNum.substr(0, 3) + ") " + phoneNum.substr(3, 3) + "-" + phoneNum.substr(6);
-        }
-        function SetTxtcPostalCode() {
-            var postalCode = document.getElementById("txtcPostalCode").value;
-           if (postalCode.charAt(3) != " ")
-                postalCode = postalCode.substr(0, 3) + " " + postalCode.substr(3);
-            txtcPostalCode.value = postalCode.toUpperCase();
-        }
-                */
                Customer customer = new Customer();
                customer.CustName = txtcName.Text;
                customer.Address = txtcAddress.Text;
-               customer.PostalCode = txtcPostalCode.Text;
-               customer.PhoneNumber = txtcPhoneNumber.Text;
-               customer.Email = txtcEmail.Text;
+               customer.PostalCode = SetPostalCode(txtcPostalCode);
+               customer.PhoneNumber = SetPhoneNumber(txtcPhoneNumber);
+               customer.Email = txtcEmail.Text.ToLower();
                customer.Password = txtcPassword.Text;
                if (dbConn.InsertCustomer(customer))
                   Response.Redirect("Default.aspx");
@@ -53,6 +36,24 @@ namespace CarSales
                throw;
             }
          }
+      }
+      protected string SetPhoneNumber (TextBox tb)
+      {
+         string phoneNum = tb.Text;
+         if (phoneNum.Length == 10)
+            phoneNum = "(" + phoneNum.Substring(0, 3) + ") " + phoneNum.Substring(3, 3) + "-" + phoneNum.Substring(6);
+         return phoneNum;
+      }
+      protected string SetPostalCode (TextBox tb)
+      {
+         string postalCode = tb.Text;
+         if (postalCode.IndexOf(" ") != 3)
+            postalCode = postalCode.Substring(0, 3) + " " + postalCode.Substring(3);
+         return postalCode.ToUpper();
+      }
+      protected void BtnLogIn_Click(object sender, EventArgs e)
+      {
+         Response.Redirect("Default.aspx");
       }
    }
 }

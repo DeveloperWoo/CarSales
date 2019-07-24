@@ -1,0 +1,310 @@
+[1mdiff --git a/.vs/CarSales/v16/.suo b/.vs/CarSales/v16/.suo[m
+[1mindex 384063c..cf18ba0 100644[m
+Binary files a/.vs/CarSales/v16/.suo and b/.vs/CarSales/v16/.suo differ
+[1mdiff --git a/.vs/CarSales/v16/Server/sqlite3/storage.ide b/.vs/CarSales/v16/Server/sqlite3/storage.ide[m
+[1mindex d89326c..51230a1 100644[m
+Binary files a/.vs/CarSales/v16/Server/sqlite3/storage.ide and b/.vs/CarSales/v16/Server/sqlite3/storage.ide differ
+[1mdiff --git a/.vs/CarSales/v16/Server/sqlite3/storage.ide-shm b/.vs/CarSales/v16/Server/sqlite3/storage.ide-shm[m
+[1mindex afb104a..0a4a27f 100644[m
+Binary files a/.vs/CarSales/v16/Server/sqlite3/storage.ide-shm and b/.vs/CarSales/v16/Server/sqlite3/storage.ide-shm differ
+[1mdiff --git a/.vs/CarSales/v16/Server/sqlite3/storage.ide-wal b/.vs/CarSales/v16/Server/sqlite3/storage.ide-wal[m
+[1mindex c190c6b..bdcfe5f 100644[m
+Binary files a/.vs/CarSales/v16/Server/sqlite3/storage.ide-wal and b/.vs/CarSales/v16/Server/sqlite3/storage.ide-wal differ
+[1mdiff --git a/CarSales/Profile.aspx b/CarSales/Profile.aspx[m
+[1mindex cfe59f1..ff149a9 100644[m
+[1m--- a/CarSales/Profile.aspx[m
+[1m+++ b/CarSales/Profile.aspx[m
+[36m@@ -156,27 +156,12 @@[m
+                             <tr>[m
+                                 <th>Brand:</th>[m
+                                 <td>[m
+[31m-                                    <asp:TextBox ID="txtBrand" runat="server" Width="200px"></asp:TextBox></td>[m
+[31m-                                <td>[m
+[31m-                                    <asp:RequiredFieldValidator ID="vldBrand" runat="server"[m
+[31m-                                        ErrorMessage="You must enter a brand."[m
+[31m-                                        ForeColor="Red"[m
+[31m-                                        ControlToValidate="txtBrand"[m
+[31m-                                        ValidationGroup="OrderGroup"[m
+[31m-                                        />[m
+[31m-                                </td>[m
+[32m+[m[32m                                    <asp:DropDownList ID="ddBrand" runat="server" Width="200px" onselectedindexchanged="ddBrand_SelectedIndexChanged"/></td>[m[41m                                [m
+                             </tr>[m
+                             <tr>[m
+                                 <th>Model:</th>[m
+                                 <td>[m
+[31m-                                    <asp:TextBox ID="txtModel" runat="server" Width="200px"></asp:TextBox></td>[m
+[31m-                                <td>[m
+[31m-                                    <asp:RequiredFieldValidator ID="vldModel" runat="server"[m
+[31m-                                        ErrorMessage="You must enter a model."[m
+[31m-                                        ForeColor="Red"[m
+[31m-                                        ControlToValidate="txtModel"[m
+[31m-                                        ValidationGroup="OrderGroup" />[m
+[31m-                                </td>[m
+[32m+[m[32m                                    <asp:DropDownList ID="ddModel" runat="server" Width="200px" /></td>[m[41m          [m
+                             </tr>[m
+                             <tr>[m
+                                 <th>Year:</th>[m
+[36m@@ -201,7 +186,11 @@[m
+                                 <td>[m
+                                     <asp:TextBox ID="txtPrice" runat="server" Width="200px" MaxLength="10"></asp:TextBox></td>[m
+                                 <td>[m
+[31m-[m
+[32m+[m[32m                                    <asp:RequiredFieldValidator ID="vldPrice_0" runat="server"[m
+[32m+[m[32m                                        ErrorMessage="You must enter price."[m
+[32m+[m[32m                                        ForeColor="Red"[m
+[32m+[m[32m                                        ControlToValidate="txtColour"[m
+[32m+[m[32m                                        ValidationGroup="OrderGroup" />[m
+                                     <asp:RegularExpressionValidator ID="vldPrice" runat="server"[m
+                                         ControlToValidate="txtPrice"[m
+                                         ErrorMessage="Only positive numeric allowed."[m
+[1mdiff --git a/CarSales/Profile.aspx.cs b/CarSales/Profile.aspx.cs[m
+[1mindex 4900f03..8b7910c 100644[m
+[1m--- a/CarSales/Profile.aspx.cs[m
+[1m+++ b/CarSales/Profile.aspx.cs[m
+[36m@@ -25,10 +25,24 @@[m [mnamespace CarSales[m
+             RepeaterOrders.DataBind();[m
+          }         [m
+ [m
+[31m-         for (int i = 2000; i <= DateTime.Now.Year; i++)[m
+[32m+[m[32m         for (int i = 2000; i <= DateTime.Now.Year + 1; i++)[m
+             ddYear.Items.Add(i.ToString());[m
+ [m
+          gridItem3.Visible = false;[m
+[32m+[m
+[32m+[m[32m         CreateCarBrandModel();[m
+[32m+[m
+[32m+[m[32m      }[m
+[32m+[m
+[32m+[m[32m      public void CreateCarBrandModel ()[m
+[32m+[m[32m      {[m
+[32m+[m[32m         Dictionary<string, List<string>> cars = new Dictionary<string, List<string>>() {[m
+[32m+[m[32m            { "BMW", new List<string> { "Mini", "M"} },[m
+[32m+[m[32m            { "Nissan", new List<string> { "Sentra", "Silvia", "Versa"} },[m
+[32m+[m[32m            { "Ford", new List<string> { "Custom", "Edge"} },[m
+[32m+[m[32m         };[m
+[32m+[m[32m         foreach (string key in cars.Keys)[m
+[32m+[m[32m            ddBrand.Items.Add(key);[m
+       }[m
+ [m
+       protected void BtnOrder_Click(object sender, EventArgs e)[m
+[36m@@ -40,16 +54,16 @@[m [mnamespace CarSales[m
+                Order order = new Order();[m
+ [m
+                order.CustName = (string)Session["username"];[m
+[31m-               order.Brand = txtBrand.Text;[m
+[31m-               order.Model = txtModel.Text;[m
+[32m+[m[32m             //  order.Brand = txtBrand.Text;[m
+[32m+[m[32m              // order.Model = txtModel.Text;[m
+                order.Year = ddYear.Text;[m
+                order.Colour = txtColour.Text;[m
+                order.Price = Double.Parse(txtPrice.Text);[m
+ [m
+                if (dbConn.InsertOrder(order))[m
+                {[m
+[31m-                  txtBrand.Text = "";[m
+[31m-                  txtModel.Text = "";[m
+[32m+[m[32m                 // txtBrand.Text = "";[m
+[32m+[m[32m                //  txtModel.Text = "";[m
+                   txtColour.Text = "";[m
+                   txtPrice.Text = "";[m
+                   Response.Redirect(Request.RawUrl); //refresh the current page[m
+[36m@@ -110,5 +124,10 @@[m [mnamespace CarSales[m
+          }[m
+          [m
+       }[m
+[32m+[m
+[32m+[m[32m      protected void ddBrand_SelectedIndexChanged(object sender, EventArgs e)[m
+[32m+[m[32m      {[m
+[32m+[m
+[32m+[m[32m      }[m
+    }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/CarSales/Profile.aspx.designer.cs b/CarSales/Profile.aspx.designer.cs[m
+[1mindex 8efe633..e19269d 100644[m
+[1m--- a/CarSales/Profile.aspx.designer.cs[m
+[1m+++ b/CarSales/Profile.aspx.designer.cs[m
+[36m@@ -85,40 +85,22 @@[m [mnamespace CarSales {[m
+         protected global::System.Web.UI.WebControls.Label valEmail;[m
+         [m
+         /// <summary>[m
+[31m-        /// txtBrand control.[m
+[32m+[m[32m        /// ddBrand control.[m
+         /// </summary>[m
+         /// <remarks>[m
+         /// Auto-generated field.[m
+         /// To modify move field declaration from designer file to code-behind file.[m
+         /// </remarks>[m
+[31m-        protected global::System.Web.UI.WebControls.TextBox txtBrand;[m
+[32m+[m[32m        protected global::System.Web.UI.WebControls.DropDownList ddBrand;[m
+         [m
+         /// <summary>[m
+[31m-        /// vldBrand control.[m
+[32m+[m[32m        /// ddModel control.[m
+         /// </summary>[m
+         /// <remarks>[m
+         /// Auto-generated field.[m
+         /// To modify move field declaration from designer file to code-behind file.[m
+         /// </remarks>[m
+[31m-        protected global::System.Web.UI.WebControls.RequiredFieldValidator vldBrand;[m
+[31m-        [m
+[31m-        /// <summary>[m
+[31m-        /// txtModel control.[m
+[31m-        /// </summary>[m
+[31m-        /// <remarks>[m
+[31m-        /// Auto-generated field.[m
+[31m-        /// To modify move field declaration from designer file to code-behind file.[m
+[31m-        /// </remarks>[m
+[31m-        protected global::System.Web.UI.WebControls.TextBox txtModel;[m
+[31m-        [m
+[31m-        /// <summary>[m
+[31m-        /// vldModel control.[m
+[31m-        /// </summary>[m
+[31m-        /// <remarks>[m
+[31m-        /// Auto-generated field.[m
+[31m-        /// To modify move field declaration from designer file to code-behind file.[m
+[31m-        /// </remarks>[m
+[31m-        protected global::System.Web.UI.WebControls.RequiredFieldValidator vldModel;[m
+[32m+[m[32m        protected global::System.Web.UI.WebControls.DropDownList ddModel;[m
+         [m
+         /// <summary>[m
+         /// ddYear control.[m
+[36m@@ -156,6 +138,15 @@[m [mnamespace CarSales {[m
+         /// </remarks>[m
+         protected global::System.Web.UI.WebControls.TextBox txtPrice;[m
+         [m
+[32m+[m[32m        /// <summary>[m
+[32m+[m[32m        /// vldPrice_0 control.[m
+[32m+[m[32m        /// </summary>[m
+[32m+[m[32m        /// <remarks>[m
+[32m+[m[32m        /// Auto-generated field.[m
+[32m+[m[32m        /// To modify move field declaration from designer file to code-behind file.[m
+[32m+[m[32m        /// </remarks>[m
+[32m+[m[32m        protected global::System.Web.UI.WebControls.RequiredFieldValidator vldPrice_0;[m
+[32m+[m[41m        [m
+         /// <summary>[m
+         /// vldPrice control.[m
+         /// </summary>[m
+[1mdiff --git a/CarSales/Registration.aspx b/CarSales/Registration.aspx[m
+[1mindex 693f43c..238528b 100644[m
+[1m--- a/CarSales/Registration.aspx[m
+[1m+++ b/CarSales/Registration.aspx[m
+[36m@@ -13,17 +13,8 @@[m
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>[m
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>[m
+     <script>[m
+[31m-        function SetTxtcPhoneNumber() {[m
+[31m-            var phoneNum = document.getElementById("txtcPhoneNumber").value;[m
+[31m-            if (phoneNum.length == 10)[m
+[31m-                txtcPhoneNumber.value = "(" + phoneNum.substr(0, 3) + ") " + phoneNum.substr(3, 3) + "-" + phoneNum.substr(6);[m
+[31m-        }[m
+[31m-        function SetTxtcPostalCode() {[m
+[31m-            var postalCode = document.getElementById("txtcPostalCode").value;[m
+[31m-           if (postalCode.charAt(3) != " ")[m
+[31m-                postalCode = postalCode.substr(0, 3) + " " + postalCode.substr(3);[m
+[31m-            txtcPostalCode.value = postalCode.toUpperCase();[m
+[31m-        }[m
+[32m+[m[41m        [m
+[32m+[m[41m        [m
+     </script>[m
+ [m
+     <style>[m
+[36m@@ -63,13 +54,19 @@[m
+         #BtnRegister {[m
+             width: 200px;[m
+         }[m
+[32m+[m[32m        #BtnLogIn {[m
+[32m+[m[32m            margin-right: 20px;[m
+[32m+[m[32m        }[m
+     </style>[m
+ </head>[m
+ <body>[m
+     <form id="form3" runat="server">[m
+         <div class="jumbotron">[m
+             <h1>Sheridan Auto Trader</h1>[m
+[31m-            <h3 id="welcomeMsg">Welcome to the "Sheridan Car Sales"! </h3>[m
+[32m+[m[32m            <h3 id="welcomeMsg">Welcome to the "Sheridan Car Sales"![m[41m [m
+[32m+[m[32m                <asp:Button ID="BtnLogIn" runat="server" CssClass="btn btn-light pull-right" Text="LOG IN" OnClick="BtnLogIn_Click" />[m
+[32m+[m[32m            </h3>[m
+[32m+[m[41m            [m
+         </div>[m
+         <div class="container">[m
+             <div class="row col-12">[m
+[36m@@ -109,12 +106,13 @@[m
+                                 ErrorMessage="You must enter your postal code"[m
+                                 ControlToValidate="txtcPostalCode"[m
+                                  ForeColor="Red"[m
+[31m-                                ValidationGroup="RegistraterGroup" Display="Dynamic" />[m
+[32m+[m[32m                                ValidationGroup="RegistraterGroup"  />[m
+                             <asp:RegularExpressionValidator ID="cPostalCode" runat="server"[m
+                                 ControlToValidate="txtcPostalCode"[m
+                                 ErrorMessage="You must enter valid postal code format"[m
+[31m-                                ForeColor="Red"                                [m
+[31m-                                ValidationGroup="RegistraterGroup" Display="Dynamic" />[m
+[32m+[m[32m                                ForeColor="Red"[m[41m                           [m
+[32m+[m[32m                                ValidationExpression="^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-z]{1} *\d{1}[A-z]{1}\d{1}$"[m
+[32m+[m[32m                                />[m
+                         </td>[m
+                     </tr>[m
+                     <tr>[m
+[1mdiff --git a/CarSales/Registration.aspx.cs b/CarSales/Registration.aspx.cs[m
+[1mindex ea15f68..693c911 100644[m
+[1m--- a/CarSales/Registration.aspx.cs[m
+[1m+++ b/CarSales/Registration.aspx.cs[m
+[36m@@ -13,10 +13,6 @@[m [mnamespace CarSales[m
+       readonly DBConnection dbConn = new DBConnection();[m
+       protected void Page_Load(object sender, EventArgs e)[m
+       {[m
+[31m-         cPostalCode.ValidationExpression = @"^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$";[m
+[31m-         /*[m
+[31m-          ValidationExpression=""[m
+[31m-          */[m
+       }[m
+ [m
+       protected void BtnRegister_Click(object sender, EventArgs e)[m
+[36m@@ -25,25 +21,12 @@[m [mnamespace CarSales[m
+          {[m
+             try[m
+             {[m
+[31m-               /*[m
+[31m-                 function SetTxtcPhoneNumber() {[m
+[31m-            var phoneNum = document.getElementById("txtcPhoneNumber").value;[m
+[31m-            if (phoneNum.length == 10)[m
+[31m-                txtcPhoneNumber.value = "(" + phoneNum.substr(0, 3) + ") " + phoneNum.substr(3, 3) + "-" + phoneNum.substr(6);[m
+[31m-        }[m
+[31m-        function SetTxtcPostalCode() {[m
+[31m-            var postalCode = document.getElementById("txtcPostalCode").value;[m
+[31m-           if (postalCode.charAt(3) != " ")[m
+[31m-                postalCode = postalCode.substr(0, 3) + " " + postalCode.substr(3);[m
+[31m-            txtcPostalCode.value = postalCode.toUpperCase();[m
+[31m-        }[m
+[31m-                */[m
+                Customer customer = new Customer();[m
+                customer.CustName = txtcName.Text;[m
+                customer.Address = txtcAddress.Text;[m
+[31m-               customer.PostalCode = txtcPostalCode.Text;[m
+[31m-               customer.PhoneNumber = txtcPhoneNumber.Text;[m
+[31m-               customer.Email = txtcEmail.Text;[m
+[32m+[m[32m               customer.PostalCode = SetPostalCode(txtcPostalCode);[m
+[32m+[m[32m               customer.PhoneNumber = SetPhoneNumber(txtcPhoneNumber);[m
+[32m+[m[32m               customer.Email = txtcEmail.Text.ToLower();[m
+                customer.Password = txtcPassword.Text;[m
+                if (dbConn.InsertCustomer(customer))[m
+                   Response.Redirect("Default.aspx");[m
+[36m@@ -54,5 +37,23 @@[m [mnamespace CarSales[m
+             }[m
+          }[m
+       }[m
+[32m+[m[32m      protected string SetPhoneNumber (TextBox tb)[m
+[32m+[m[32m      {[m
+[32m+[m[32m         string phoneNum = tb.Text;[m
+[32m+[m[32m         if (phoneNum.Length == 10)[m
+[32m+[m[32m            phoneNum = "(" + phoneNum.Substring(0, 3) + ") " + phoneNum.Substring(3, 3) + "-" + phoneNum.Substring(6);[m
+[32m+[m[32m         return phoneNum;[m
+[32m+[m[32m      }[m
+[32m+[m[32m      protected string SetPostalCode (TextBox tb)[m
+[32m+[m[32m      {[m
+[32m+[m[32m         string postalCode = tb.Text;[m
+[32m+[m[32m         if (postalCode.IndexOf(" ") != 3)[m
+[32m+[m[32m            postalCode = postalCode.Substring(0, 3) + " " + postalCode.Substring(3);[m
+[

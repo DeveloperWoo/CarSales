@@ -25,10 +25,24 @@ namespace CarSales
             RepeaterOrders.DataBind();
          }         
 
-         for (int i = 2000; i <= DateTime.Now.Year; i++)
+         for (int i = 2000; i <= DateTime.Now.Year + 1; i++)
             ddYear.Items.Add(i.ToString());
 
          gridItem3.Visible = false;
+
+         CreateCarBrandModel();
+
+      }
+
+      public void CreateCarBrandModel ()
+      {
+         Dictionary<string, List<string>> cars = new Dictionary<string, List<string>>() {
+            { "BMW", new List<string> { "Mini", "M"} },
+            { "Nissan", new List<string> { "Sentra", "Silvia", "Versa"} },
+            { "Ford", new List<string> { "Custom", "Edge"} },
+         };
+         foreach (string key in cars.Keys)
+            ddBrand.Items.Add(key);
       }
 
       protected void BtnOrder_Click(object sender, EventArgs e)
@@ -40,16 +54,16 @@ namespace CarSales
                Order order = new Order();
 
                order.CustName = (string)Session["username"];
-               order.Brand = txtBrand.Text;
-               order.Model = txtModel.Text;
+             //  order.Brand = txtBrand.Text;
+              // order.Model = txtModel.Text;
                order.Year = ddYear.Text;
                order.Colour = txtColour.Text;
                order.Price = Double.Parse(txtPrice.Text);
 
                if (dbConn.InsertOrder(order))
                {
-                  txtBrand.Text = "";
-                  txtModel.Text = "";
+                 // txtBrand.Text = "";
+                //  txtModel.Text = "";
                   txtColour.Text = "";
                   txtPrice.Text = "";
                   Response.Redirect(Request.RawUrl); //refresh the current page
@@ -109,6 +123,11 @@ namespace CarSales
             BtnShowOrders.Text = "VIEW ALL ORDER LIST";
          }
          
+      }
+
+      protected void ddBrand_SelectedIndexChanged(object sender, EventArgs e)
+      {
+
       }
    }
 }

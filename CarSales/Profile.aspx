@@ -156,27 +156,12 @@
                             <tr>
                                 <th>Brand:</th>
                                 <td>
-                                    <asp:TextBox ID="txtBrand" runat="server" Width="200px"></asp:TextBox></td>
-                                <td>
-                                    <asp:RequiredFieldValidator ID="vldBrand" runat="server"
-                                        ErrorMessage="You must enter a brand."
-                                        ForeColor="Red"
-                                        ControlToValidate="txtBrand"
-                                        ValidationGroup="OrderGroup"
-                                        />
-                                </td>
+                                    <asp:DropDownList ID="ddBrand" runat="server" Width="200px" onselectedindexchanged="ddBrand_SelectedIndexChanged"/></td>                                
                             </tr>
                             <tr>
                                 <th>Model:</th>
                                 <td>
-                                    <asp:TextBox ID="txtModel" runat="server" Width="200px"></asp:TextBox></td>
-                                <td>
-                                    <asp:RequiredFieldValidator ID="vldModel" runat="server"
-                                        ErrorMessage="You must enter a model."
-                                        ForeColor="Red"
-                                        ControlToValidate="txtModel"
-                                        ValidationGroup="OrderGroup" />
-                                </td>
+                                    <asp:DropDownList ID="ddModel" runat="server" Width="200px" /></td>          
                             </tr>
                             <tr>
                                 <th>Year:</th>
@@ -201,7 +186,11 @@
                                 <td>
                                     <asp:TextBox ID="txtPrice" runat="server" Width="200px" MaxLength="10"></asp:TextBox></td>
                                 <td>
-
+                                    <asp:RequiredFieldValidator ID="vldPrice_0" runat="server"
+                                        ErrorMessage="You must enter price."
+                                        ForeColor="Red"
+                                        ControlToValidate="txtColour"
+                                        ValidationGroup="OrderGroup" />
                                     <asp:RegularExpressionValidator ID="vldPrice" runat="server"
                                         ControlToValidate="txtPrice"
                                         ErrorMessage="Only positive numeric allowed."

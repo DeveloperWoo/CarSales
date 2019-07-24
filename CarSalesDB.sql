@@ -27,8 +27,10 @@ CREATE TABLE [dbo].[Orders](
 
 INSERT INTO Customers(CustName, Address, PostalCode, PhoneNumber, Email, Password)
 VALUES 
-('HJ','2440 Winston Park Dr, Oakville', 'L6H 7V2', '(437)988-7778', 'woohyu@sheridancollege.ca','1234'),
-('MJ','8200 Dixie Rd, Brampton', 'L6T 4B8', '(647)222-2644', 'parkminj@sheridancollege.ca','1234')
+('HJ','2440 Winston Park Dr, Oakville', 'L6H 7V2', '(437) 988-7778', 'woohyu@sheridancollege.ca','1234a'),
+('MJ','8200 Dixie Rd, Brampton', 'L6T 4B8', '(647) 222-2644', 'parkminj@sheridancollege.ca','1234a'),
+('Paul','53 Greene Drive, Mississauga', 'K6T 4O8', '(416) 232-4324', 'paul@gmail.ca','1234a'),
+('Sam','53 Finch Avenue, North York', 'M2R 1P1', '(906) 222-2434', 'sam@gmail.ca','1234a')
 ;
 
 INSERT INTO Orders(CustName, Brand,Model,Year,Colour,Price)
@@ -36,6 +38,7 @@ VALUES
 ('HJ', 'Ferrari', '488 Spider', '2019', 'Red', 334409),
 ('MJ', 'Porsche', 'Macan', '2019', 'Blue', 400000)
 ;
+
 
 SELECT * FROM Customers;
 SELECT * FROM Orders;

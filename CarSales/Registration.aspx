@@ -13,17 +13,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script>
-        function SetTxtcPhoneNumber() {
-            var phoneNum = document.getElementById("txtcPhoneNumber").value;
-            if (phoneNum.length == 10)
-                txtcPhoneNumber.value = "(" + phoneNum.substr(0, 3) + ") " + phoneNum.substr(3, 3) + "-" + phoneNum.substr(6);
-        }
-        function SetTxtcPostalCode() {
-            var postalCode = document.getElementById("txtcPostalCode").value;
-           if (postalCode.charAt(3) != " ")
-                postalCode = postalCode.substr(0, 3) + " " + postalCode.substr(3);
-            txtcPostalCode.value = postalCode.toUpperCase();
-        }
+        
+        
     </script>
 
     <style>
@@ -63,13 +54,19 @@
         #BtnRegister {
             width: 200px;
         }
+        #BtnLogIn {
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
     <form id="form3" runat="server">
         <div class="jumbotron">
             <h1>Sheridan Auto Trader</h1>
-            <h3 id="welcomeMsg">Welcome to the "Sheridan Car Sales"! </h3>
+            <h3 id="welcomeMsg">Welcome to the "Sheridan Car Sales"! 
+                <asp:Button ID="BtnLogIn" runat="server" CssClass="btn btn-light pull-right" Text="LOG IN" OnClick="BtnLogIn_Click" />
+            </h3>
+            
         </div>
         <div class="container">
             <div class="row col-12">
@@ -109,12 +106,13 @@
                                 ErrorMessage="You must enter your postal code"
                                 ControlToValidate="txtcPostalCode"
                                  ForeColor="Red"
-                                ValidationGroup="RegistraterGroup" Display="Dynamic" />
+                                ValidationGroup="RegistraterGroup"  />
                             <asp:RegularExpressionValidator ID="cPostalCode" runat="server"
                                 ControlToValidate="txtcPostalCode"
                                 ErrorMessage="You must enter valid postal code format"
-                                ForeColor="Red"                                
-                                ValidationGroup="RegistraterGroup" Display="Dynamic" />
+                                ForeColor="Red"                           
+                                ValidationExpression="^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-z]{1} *\d{1}[A-z]{1}\d{1}$"
+                                />
                         </td>
                     </tr>
                     <tr>
