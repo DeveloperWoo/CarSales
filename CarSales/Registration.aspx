@@ -109,12 +109,12 @@
                                 ErrorMessage="You must enter your postal code"
                                 ControlToValidate="txtcPostalCode"
                                  ForeColor="Red"
-                                ValidationGroup="RegistraterGroup" />
+                                ValidationGroup="RegistraterGroup" Display="Dynamic" />
                             <asp:RegularExpressionValidator ID="cPostalCode" runat="server"
                                 ControlToValidate="txtcPostalCode"
                                 ErrorMessage="You must enter valid postal code format"
                                 ForeColor="Red"                                
-                                ValidationGroup="RegistraterGroup" />
+                                ValidationGroup="RegistraterGroup" Display="Dynamic" />
                         </td>
                     </tr>
                     <tr>
@@ -132,7 +132,7 @@
                                 ControlToValidate="txtcPhoneNumber"
                                 ErrorMessage="You must enter the number only."
                                 ForeColor="Red"
-                                ValidationExpression="^\d+?$" />
+                                ValidationExpression="^\d+?$" />                            
                         </td>
                     </tr>
                     <tr>
