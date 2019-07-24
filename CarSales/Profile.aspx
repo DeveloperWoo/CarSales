@@ -114,7 +114,6 @@
         </div>
         <div class="container">
             <div class="row justify-content-around">
-
                 <div class="col-12" id="grid-container">
                     <div id="gridItem1">
                         <h2>My Profile</h2>
@@ -163,7 +162,8 @@
                                         ErrorMessage="You must enter a brand."
                                         ForeColor="Red"
                                         ControlToValidate="txtBrand"
-                                        ValidationGroup="OrderGroup" />
+                                        ValidationGroup="OrderGroup"
+                                        />
                                 </td>
                             </tr>
                             <tr>
@@ -201,6 +201,7 @@
                                 <td>
                                     <asp:TextBox ID="txtPrice" runat="server" Width="200px" MaxLength="10"></asp:TextBox></td>
                                 <td>
+
                                     <asp:RegularExpressionValidator ID="vldPrice" runat="server"
                                         ControlToValidate="txtPrice"
                                         ErrorMessage="Only positive numeric allowed."

@@ -13,6 +13,10 @@ namespace CarSales
       readonly DBConnection dbConn = new DBConnection();
       protected void Page_Load(object sender, EventArgs e)
       {
+         cPostalCode.ValidationExpression = @"^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$";
+         /*
+          ValidationExpression=""
+          */
       }
 
       protected void BtnRegister_Click(object sender, EventArgs e)
@@ -21,6 +25,19 @@ namespace CarSales
          {
             try
             {
+               /*
+                 function SetTxtcPhoneNumber() {
+            var phoneNum = document.getElementById("txtcPhoneNumber").value;
+            if (phoneNum.length == 10)
+                txtcPhoneNumber.value = "(" + phoneNum.substr(0, 3) + ") " + phoneNum.substr(3, 3) + "-" + phoneNum.substr(6);
+        }
+        function SetTxtcPostalCode() {
+            var postalCode = document.getElementById("txtcPostalCode").value;
+           if (postalCode.charAt(3) != " ")
+                postalCode = postalCode.substr(0, 3) + " " + postalCode.substr(3);
+            txtcPostalCode.value = postalCode.toUpperCase();
+        }
+                */
                Customer customer = new Customer();
                customer.CustName = txtcName.Text;
                customer.Address = txtcAddress.Text;
@@ -37,7 +54,5 @@ namespace CarSales
             }
          }
       }
-
-
    }
 }

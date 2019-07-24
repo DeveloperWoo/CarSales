@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
     <script>
         function SetTxtcPhoneNumber() {
             var phoneNum = document.getElementById("txtcPhoneNumber").value;
@@ -21,7 +20,7 @@
         }
         function SetTxtcPostalCode() {
             var postalCode = document.getElementById("txtcPostalCode").value;
-            if (postalCode.charAt(3) != " ")
+           if (postalCode.charAt(3) != " ")
                 postalCode = postalCode.substr(0, 3) + " " + postalCode.substr(3);
             txtcPostalCode.value = postalCode.toUpperCase();
         }
@@ -106,11 +105,15 @@
                         <td>
                             <asp:TextBox ID="txtcPostalCode" runat="server" Width="200px" onblur="SetTxtcPostalCode()"></asp:TextBox></td>
                         <td>
+                             <asp:RequiredFieldValidator ID="cPostalCode_0" runat="server"
+                                ErrorMessage="You must enter your postal code"
+                                ControlToValidate="txtcPostalCode"
+                                 ForeColor="Red"
+                                ValidationGroup="RegistraterGroup" />
                             <asp:RegularExpressionValidator ID="cPostalCode" runat="server"
                                 ControlToValidate="txtcPostalCode"
                                 ErrorMessage="You must enter valid postal code format"
-                                ForeColor="Red"
-                                ValidationExpression="^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$"
+                                ForeColor="Red"                                
                                 ValidationGroup="RegistraterGroup" />
                         </td>
                     </tr>
@@ -120,6 +123,11 @@
                             <asp:TextBox ID="txtcPhoneNumber" runat="server" Width="200px"
                                 onblur="SetTxtcPhoneNumber()"></asp:TextBox></td>
                         <td>
+                            <asp:RequiredFieldValidator ID="cPhoneNumber_0" runat="server"
+                                ErrorMessage="You must enter your phone number"
+                                ControlToValidate="txtcPhoneNumber"
+                                ForeColor="Red"
+                                ValidationGroup="RegistraterGroup" />
                             <asp:RegularExpressionValidator ID="cPhoneNumber" runat="server"
                                 ControlToValidate="txtcPhoneNumber"
                                 ErrorMessage="You must enter the number only."
@@ -132,6 +140,11 @@
                         <td>
                             <asp:TextBox ID="txtcEmail" runat="server" Width="200px"></asp:TextBox></td>
                         <td>
+                            <asp:RequiredFieldValidator ID="cEmail_0" runat="server"
+                                ErrorMessage="You must enter your email"
+                                ControlToValidate="txtcEmail"
+                                ForeColor="Red"
+                                ValidationGroup="RegistraterGroup" />
                             <asp:RegularExpressionValidator ID="cEmail" runat="server"
                                 ControlToValidate="txtcEmail"
                                 ErrorMessage="You must enter valid email format"
@@ -145,6 +158,11 @@
                         <td>
                             <asp:TextBox ID="txtcEmail2" runat="server" Width="200px"></asp:TextBox></td>
                         <td>
+                            <asp:RequiredFieldValidator ID="cEmail2_0" runat="server"
+                                ErrorMessage="You must enter your email again"
+                                ControlToValidate="txtcEmail2"
+                                ForeColor="Red"
+                                ValidationGroup="RegistraterGroup" />
                             <asp:CompareValidator ID="cEmail2" runat="server"
                                 ControlToValidate="txtcEmail2"
                                 ControlToCompare="txtcEmail"
@@ -158,6 +176,11 @@
                         <td>
                             <asp:TextBox ID="txtcPassword" runat="server" Width="200px" type="password"></asp:TextBox></td>
                         <td>
+                            <asp:RequiredFieldValidator ID="cPassword_0" runat="server"
+                                ErrorMessage="You must enter your password"
+                                ControlToValidate="txtcPassword"
+                                ForeColor="Red"
+                                ValidationGroup="RegistraterGroup" />
                             <asp:RegularExpressionValidator ID="cPassword" runat="server"
                                 ControlToValidate="txtcPassword"
                                 ErrorMessage="Password must be between 4 and 8 digits long and include at least one numeric digit"
@@ -171,6 +194,11 @@
                         <td>
                             <asp:TextBox ID="txtcPassword2" runat="server" Width="200px" type="password"></asp:TextBox></td>
                         <td>
+                            <asp:RequiredFieldValidator ID="cPassword2_0" runat="server"
+                                ErrorMessage="You must enter your password again"
+                                ControlToValidate="txtcPassword2"
+                                ForeColor="Red"
+                                ValidationGroup="RegistraterGroup" />
                             <asp:CompareValidator ID="cPassword2" runat="server"
                                 ControlToValidate="txtcPassword2"
                                 ControlToCompare="txtcPassword"

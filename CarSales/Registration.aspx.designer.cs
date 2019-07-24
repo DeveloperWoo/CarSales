@@ -67,6 +67,15 @@ namespace CarSales {
         protected global::System.Web.UI.WebControls.TextBox txtcPostalCode;
         
         /// <summary>
+        /// cPostalCode_0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator cPostalCode_0;
+        
+        /// <summary>
         /// cPostalCode control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace CarSales {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtcPhoneNumber;
+        
+        /// <summary>
+        /// cPhoneNumber_0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator cPhoneNumber_0;
         
         /// <summary>
         /// cPhoneNumber control.
@@ -103,6 +121,15 @@ namespace CarSales {
         protected global::System.Web.UI.WebControls.TextBox txtcEmail;
         
         /// <summary>
+        /// cEmail_0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator cEmail_0;
+        
+        /// <summary>
         /// cEmail control.
         /// </summary>
         /// <remarks>
@@ -119,6 +146,15 @@ namespace CarSales {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtcEmail2;
+        
+        /// <summary>
+        /// cEmail2_0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator cEmail2_0;
         
         /// <summary>
         /// cEmail2 control.
@@ -139,6 +175,15 @@ namespace CarSales {
         protected global::System.Web.UI.WebControls.TextBox txtcPassword;
         
         /// <summary>
+        /// cPassword_0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator cPassword_0;
+        
+        /// <summary>
         /// cPassword control.
         /// </summary>
         /// <remarks>
@@ -155,6 +200,15 @@ namespace CarSales {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtcPassword2;
+        
+        /// <summary>
+        /// cPassword2_0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator cPassword2_0;
         
         /// <summary>
         /// cPassword2 control.
