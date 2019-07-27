@@ -24,7 +24,7 @@ namespace CarSales
 
          if (!IsPostBack)
          {
-            //Display Order history
+            //Retrieve Order history from DB
             RepeaterOrders.DataSource = dbConn.GetMyOrderList(userName);
             RepeaterOrders.DataBind();
             CreateCarBrandModel();
