@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Author: Hyun Ju Woo(991497524) on July-20-2019 
+//Author: Min Jung Park(991495289) on July-20-2019 
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +15,8 @@ namespace CarSales
       readonly DBConnection dbConn = new DBConnection();
 
       protected void Page_Load(object sender, EventArgs e)
-      {
+      {        
+
          string userName = (string)Session["username"];
          welcomeUserName.Text = userName;
 
@@ -23,26 +27,25 @@ namespace CarSales
             //Display Order history
             RepeaterOrders.DataSource = dbConn.GetMyOrderList(userName);
             RepeaterOrders.DataBind();
+            CreateCarBrandModel();
          }         
 
          for (int i = 2000; i <= DateTime.Now.Year + 1; i++)
             ddYear.Items.Add(i.ToString());
 
          gridItem3.Visible = false;
-
-         CreateCarBrandModel();
-
       }
-
-      public void CreateCarBrandModel ()
-      {
-         Dictionary<string, List<string>> cars = new Dictionary<string, List<string>>() {
-            { "BMW", new List<string> { "Mini", "M"} },
-            { "Nissan", new List<string> { "Sentra", "Silvia", "Versa"} },
-            { "Ford", new List<string> { "Custom", "Edge"} },
+      Dictionary<string, List<string>> cars = new Dictionary<string, List<string>>() {
+            { "BMW", new List<string> { "3 Series", "4 Series", "i8", "x3", "x4", "x5", "x6" } },
+            { "Ford", new List<string> { "Fiesta", "F-150", "Super Duty"} },
+            { "Nissan", new List<string> { "Altima", "Maxima", "Micra", "Sentra"} },            
+            { "Toyota", new List<string> { "Camry", "Corolla", "Sequoia"} }
          };
+      public void CreateCarBrandModel ()
+      {         
          foreach (string key in cars.Keys)
             ddBrand.Items.Add(key);
+         ddBrand.SelectedValue = "";
       }
 
       protected void BtnOrder_Click(object sender, EventArgs e)
@@ -54,16 +57,14 @@ namespace CarSales
                Order order = new Order();
 
                order.CustName = (string)Session["username"];
-             //  order.Brand = txtBrand.Text;
-              // order.Model = txtModel.Text;
+               order.Brand = ddBrand.SelectedItem.Value.ToString();
+               order.Model = ddModel.SelectedItem.Value.ToString();
                order.Year = ddYear.Text;
                order.Colour = txtColour.Text;
                order.Price = Double.Parse(txtPrice.Text);
 
                if (dbConn.InsertOrder(order))
                {
-                 // txtBrand.Text = "";
-                //  txtModel.Text = "";
                   txtColour.Text = "";
                   txtPrice.Text = "";
                   Response.Redirect(Request.RawUrl); //refresh the current page
@@ -127,7 +128,12 @@ namespace CarSales
 
       protected void ddBrand_SelectedIndexChanged(object sender, EventArgs e)
       {
-
+         ddModel.Items.Clear();
+         List<string> models = new List<string>();
+         if (!cars.TryGetValue(ddBrand.SelectedItem.Value.ToString(), out models))
+            return;
+         foreach (string model in models)
+            ddModel.Items.Add(model);
       }
    }
 }

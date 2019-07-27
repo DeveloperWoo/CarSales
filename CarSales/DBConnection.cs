@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Author: Hyun Ju Woo (991497524) on July-15-2019
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -95,15 +97,6 @@ namespace CarSales
                         reader.Read();
                         customer = new Customer()
                         {
-                            /*
-                            CustName = reader.GetString(0),
-                            Address = reader.GetString(1),
-                            PostalCode = reader.GetString(2),
-                            PhoneNumber = reader.GetString(3),
-                            Email = reader.GetString(4),
-                            Password = reader.GetString(5)
-                            */
-
                             CustName = reader["CustName"].ToString(),
                             Address = reader["Address"].ToString(),
                             PostalCode = reader["PostalCode"].ToString(),

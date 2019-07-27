@@ -1,4 +1,4 @@
-﻿<!-- Author: Hyun Ju Woo () on July-15-2019 -->
+﻿<!-- Author: Hyun Ju Woo (991497524) on July-15-2019 -->
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CarSales.Default" %>
 
 <!DOCTYPE html>

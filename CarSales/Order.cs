@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Author: Min Jung Park (991495289) on July-20-2019
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;

@@ -1,4 +1,4 @@
-﻿<!-- Author: Hyun Ju Woo () on July-15-2019 -->
+﻿<!-- Author: Hyun Ju Woo (991497524) on July-15-2019 -->
 
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="OrderInfo.ascx.cs" Inherits="CarSales.OrderInfo" %>
 
