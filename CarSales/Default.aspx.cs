@@ -34,7 +34,7 @@ namespace CarSales
                     txtLoginMsg.Text = "Password does not match.";
                     break;
                 case Authentication.NoSuchCustomer:
-                    txtLoginMsg.Text = "You are not out customer yet. Do you want to join? Click Register button below!";
+                    txtLoginMsg.Text = "You are not our customer yet. Do you want to join? Click Register button below!";
                     break;
             }
         }

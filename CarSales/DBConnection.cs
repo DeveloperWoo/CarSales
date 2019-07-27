@@ -28,9 +28,9 @@ namespace CarSales
             try
             {
                 /* HJ's DB connection */
-                //connetionString = "Data Source=LAPTOP-DG03G47M\\SQLEXPRESS;Initial Catalog = CarSalesDB;Integrated Security = SSPI;Persist Security Info = false";
+                connetionString = "Data Source=LAPTOP-DG03G47M\\SQLEXPRESS;Initial Catalog = CarSalesDB;Integrated Security = SSPI;Persist Security Info = false";
             /* MJ's DB connection */
-            connetionString = "Data Source=MJ-SURFACEBOOK2\\SQLEXPRESS;Initial Catalog = CarSalesDB;Integrated Security = SSPI;Persist Security Info = false";
+            //connetionString = "Data Source=MJ-SURFACEBOOK2\\SQLEXPRESS;Initial Catalog = CarSalesDB;Integrated Security = SSPI;Persist Security Info = false";
             conn = new SqlConnection(connetionString);
                 Console.WriteLine("CarSalesDB Connected!");
             }
