@@ -35,8 +35,8 @@ VALUES
 
 INSERT INTO Orders(CustName, Brand,Model,Year,Colour,Price)
 VALUES
-('HJ', 'Ferrari', '488 Spider', '2019', 'Red', 334409),
-('MJ', 'Porsche', 'Macan', '2019', 'Blue', 400000)
+('HJ', 'BMW', 'x6', '2019', 'Red', 334409),
+('MJ', 'Toyota', 'Corolla', '2010', 'Black', 405000)
 ;
 
 
